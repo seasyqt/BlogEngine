@@ -16,6 +16,9 @@
     <properties>
         <java.version>11</java.version>
         <postgres.version>42.2.24</postgres.version>
+        <flyway.url>jdbc:postgresql://localhost:5432/blog</flyway.url>
+        <flyway.user>user</flyway.user>
+        <flyway.password>12345678</flyway.password>
     </properties>
     <dependencies>
         <dependency>
@@ -37,6 +40,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
         </dependency>
 
         <dependency>
@@ -68,6 +76,17 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <user>${flyway.user}</user>
+                    <password>${flyway.password}</password>
+                    <url>${flyway.url}</url>
+                    <driver>org.postgresql.Driver</driver>
+                </configuration>
             </plugin>
         </plugins>
     </build>
