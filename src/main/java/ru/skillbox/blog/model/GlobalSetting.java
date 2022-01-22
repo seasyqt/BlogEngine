@@ -1,6 +1,7 @@
 package ru.skillbox.blog.model;
 
 import lombok.Data;
+import ru.skillbox.blog.model.enums.GlobalSettingsCode;
 
 import javax.persistence.*;
 
@@ -15,7 +16,7 @@ public class GlobalSetting {
     private int id;
 
     @Column(nullable = false)
-    private String code;
+    private GlobalSettingsCode code;
 
     @Column(nullable = false)
     private String name;
@@ -23,4 +24,7 @@ public class GlobalSetting {
     @Column(nullable = false)
     private String value;
 
+    public boolean getValue() {
+        return value.equals("YES");
+    }
 }
